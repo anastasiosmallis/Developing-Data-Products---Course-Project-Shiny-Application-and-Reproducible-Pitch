@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/181013/d9ad94092fa948b5885db41074d2cc76
+url: http://rpubs.com/anastasios_mallis/181013
+when: 1463300517.06392
