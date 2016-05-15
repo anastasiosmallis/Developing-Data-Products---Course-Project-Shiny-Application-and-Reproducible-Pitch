@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Project: Shiny Application and Reproducible Pitch</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Course Project: Shiny Application and Reproducible Pitch">
+  <meta name="author" content="Anastasios Mallis">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Course Project: Shiny Application and Reproducible Pitch</h1>
+    <h2>Volatility Effect on Investments</h2>
+    <p>Anastasios Mallis<br/>May 2016</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h3>Summary</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>This application is a simple example of the effect of uncertainty on investemnts.</p>
+
+<p>The example here is a retirement account.</p>
+
+<p>The user can chose the monthly contributions, the ages between these contriutions will occur, the average growth in value of the investments and finaly the risk (as volatility).</p>
+
+<p>The app will output a sample path of the retirement account value, based on these inputs, along with the value of the contributions and the investment value if there was no uncertainty (volatility).</p>
+
+<p>This applications was made as the final project for the Coursera course: Developing Data Products.</p>
+
+<p>The choice of topic mas made mostly to illustrate the functionality of a Shiny app in R, with calculations done based on user inputs, and less to show the power of a certain prediction algorithm.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h3>Motivation</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Most of the times we are illustrated of what will happen to a retirement account based on the average predictions, or on an average of many simulations.</p>
+
+<p>In reality we will experience only one future and not an average of many futures.</p>
+
+<p>This app shows a potenital path of the value of the account, based on the user inputs, in comparison to the value of the contributions and the value of the account if there was no uncertainty (no volatility).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h3>Theory and assumptions</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>The simulations are based on the following assumptions:</p>
+
+<ol>
+<li>The contributions are made on a monthly basis.</li>
+<li>The monthly contributions remain the same during the relevant period (this assumption was made to simplify the app).</li>
+<li>Average Growth of the investments (excluding contributions) and Volatility remain constant during the relevant period (this assumption was made to simplify the app, in reality there may be periods of higher and lower market volatility).</li>
+<li>Investment returns follow a normal distribution, investment values follow a lognormal distribution.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h3>How it works</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>The user inputs the data through the user interface and the s
+The calculated paths are made based on the assumption that investment values follow a geometric brownian motion (Markov Chain of lognormal distributions)</p>
+
+<pre><code class="r">growth &lt;- 0.03;
+volatility &lt;- 0.2;
+starting_value &lt;- 100;
+time &lt;-10;
+
+end_value&lt;-starting_value*exp((growth-(volatility^2)/2)*time+volatility*sqrt(time)**rnorm(10));
+end_value
+</code></pre>
+
+<pre><code>##  [1] 120.2811 131.0507 148.8665 157.2132 125.2786 130.9285 122.2507
+##  [8] 118.2666 168.1807 310.6309
+</code></pre>
+
+<p>The above code illustrates the principle under which the simulations were made. 10 different simulations yield 10 different end values.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Summary'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Motivation'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Theory and assumptions'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How it works'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
